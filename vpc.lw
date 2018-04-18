@@ -1,9 +1,10 @@
 composition
 
-import Fugue.Core.AWS.Common as AWS
 import Fugue.AWS.EC2 as EC2
+import Fugue.AWS as AWS
 
 main: EC2.Vpc.new {
   cidrBlock: "10.0.0.0/16",
-  region: AWS.Us-east-1
+  region: AWS.Us-east-1,
+  tags: [AWS.tag("Env", "prod")]
 }
