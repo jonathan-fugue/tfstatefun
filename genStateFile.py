@@ -37,8 +37,9 @@ STATE = """
                             "id": "{{ vpc_id }}",
                             "instance_tenancy": "default",
                             "main_route_table_id": "{{ rt_id }}",
-                            "tags.%": "1",
-                            "tags.Env": "prod"
+                            "tags.%": "2",
+                            "tags.Terraform": "true",
+                            "tags.Fugue ID": "{{ vpc_fid_tag }}"
                         },
                         "meta": {
                             "schema_version": "1"
@@ -78,6 +79,7 @@ def main(args):
         rt_id = top_level_vpc['value']['defaultRouteTable']
         na_id = top_level_vpc['value']['defaultNetworkAcl']
         sg_id = top_level_vpc['value']['defaultSecurityGroup']
+        vpc_fid_tag = [t['Value'] for t in top_level_vpc['value']['vpc']['Tags'] if t['Key'] == 'Fugue ID'][0]
 
     print(
         Environment().from_string(STATE).render(
@@ -86,7 +88,8 @@ def main(args):
             dhcp_id=dhcp_id,
             rt_id=rt_id,
             na_id=na_id,
-            sg_id=sg_id
+            sg_id=sg_id,
+            vpc_fid_tag=vpc_fid_tag
         )
     )
       
