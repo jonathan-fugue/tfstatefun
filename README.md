@@ -15,7 +15,7 @@ fugue run vpc.lw -a vpc --import
 
 ## Update your vpc.tf with a new tag or something
 
-** Note: Just ignore the Fugue ID tag deletions
+* Note: Just ignore the Fugue ID tag deletions
 ```
 vim vpc.tf  # Add tag or something
 fugue release vpc
