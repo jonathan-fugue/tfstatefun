@@ -1,10 +1,31 @@
 composition
 
-import Fugue.AWS.EC2 as EC2
 import Fugue.AWS as AWS
+import Fugue.AWS.EC2 as EC2
 
-main: EC2.Vpc.new {
+
+############################################################
+# Region
+#   From local AWS setting: us-east-1
+############################################################
+region: AWS.Us-east-1
+
+
+############################################################
+# VPC
+#   Generated from AWS resource: vpc-d1bbf9aa
+############################################################
+ec2-vpc-1: EC2.Vpc.new {
   cidrBlock: "10.0.0.0/16",
-  region: AWS.Us-east-1,
-  tags: [AWS.tag("Env", "prod")]
+  dhcpOptions: EC2.DhcpOptions.external("dopt-2909084e", region),
+  enableDnsHostnames: False,
+  enableDnsSupport: True,
+  instanceTenancy: EC2.DefaultTenancy,
+  region: region,
+  resourceId: "vpc-d1bbf9aa",
+  tags: [
+    AWS.tag("Env", "prod"),
+  ],
 }
+
+
