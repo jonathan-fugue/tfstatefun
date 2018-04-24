@@ -34,7 +34,7 @@ STATE = """
                             "enable_classiclink_dns_support": "false",
                             "enable_dns_hostnames": "false",
                             "enable_dns_support": "true",
-                            "id": "vpc-a6cf8fdd",
+                            "id": "{{ vpc_id }}",
                             "instance_tenancy": "default",
                             "main_route_table_id": "{{ rt_id }}",
                             "tags.%": "1",
