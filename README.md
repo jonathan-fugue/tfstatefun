@@ -13,13 +13,12 @@ fugue-transcriber --filter-file filter.yaml vpc.lw
 fugue run vpc.lw -a vpc --import
 ```
 
-## Update your vpc.tf with a new tag or something
+## Update your vpc.tf with a new tag
 
-* Note: Just ignore the Fugue ID tag deletions
+* Note: Just ignore the Fugue ID tag deletions ( I guess )
 ```
-vim vpc.tf  # Add tag or something
+vim vpc.tf  # Add tag
 fugue release vpc
-vim vpc.tf
 terraform apply
 fugue-transcriber --filter-file filter.yaml vpc.lw
 fugue run vpc.lw -a vpc --import
